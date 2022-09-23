@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CardComponent</class>
+ <widget class="QWidget" name="CardComponent">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>705</width>
+    <height>193</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QFrame#frame{
+	background-color: #323258;
+	border: 1px solid black;
+	border-radius: 5px;
+}
+
+QFrame#card_frame_svg{
+	background-color: #A16EFF;
+	border-radius: 10px;
+}
+
+QLabel#card_text{
+	font-size: 18pt;
+	font-weight: bold;
+}
+
+QPushButton#card_button{
+	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 #B18AFF, stop:1 #A16FFF);
+	border-radius: 10px;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+QPushButton#card_button::hover{
+	background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 #D3BCFF, stop:1 #B18AFE);
+}</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QFrame" name="frame">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QFrame" name="card_frame_svg">
+        <property name="minimumSize">
+         <size>
+          <width>45</width>
+          <height>45</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>86</width>
+          <height>86</height>
+         </size>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="card_text">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="card_button">
+        <property name="maximumSize">
+         <size>
+          <width>140</width>
+          <height>48</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

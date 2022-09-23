@@ -1,0 +1,12 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>resources/icons/pantone-outline.svg</file>
+    <file>resources/icons/bell-outline.svg</file>
+    <file>resources/icons/email-outline.svg</file>
+    <file>resources/icons/search-outline.svg</file>
+    <file>resources/icons/menu-outline.svg</file>
+  </qresource>
+  <qresource prefix="images">
+    <file>resources/images/86445195.png</file>
+  </qresource>
+</RCC>
