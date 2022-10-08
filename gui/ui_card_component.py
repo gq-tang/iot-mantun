@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'card_componentatkqvP.ui'
+## Form generated from reading UI file 'card_component.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.3.2
 ##
@@ -22,11 +22,16 @@ class Ui_CardComponent(object):
     def setupUi(self, CardComponent):
         if not CardComponent.objectName():
             CardComponent.setObjectName(u"CardComponent")
-        CardComponent.resize(705, 193)
+        CardComponent.resize(580, 152)
         CardComponent.setStyleSheet(u"QFrame#frame{\n"
 "	background-color: #323258;\n"
 "	border: 1px solid black;\n"
 "	border-radius: 5px;\n"
+"}\n"
+"\n"
+"QFrame#card_frame_svg{\n"
+"	background-color: #A16EFF;\n"
+"	border-radius: 10px;\n"
 "}\n"
 "\n"
 "QLabel#card_text{\n"
@@ -50,18 +55,14 @@ class Ui_CardComponent(object):
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.frame = QFrame(CardComponent)
         self.frame.setObjectName(u"frame")
-        self.frame.setStyleSheet(u"QFrame#card_frame_svg{\n"
-"	background-color: #A16EFF;\n"
-"	border-radius: 10px;\n"
-"}")
         self.frame.setFrameShape(QFrame.StyledPanel)
         self.frame.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_2 = QHBoxLayout(self.frame)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.card_frame_svg = QFrame(self.frame)
         self.card_frame_svg.setObjectName(u"card_frame_svg")
-        self.card_frame_svg.setMinimumSize(QSize(91, 74))
-        self.card_frame_svg.setMaximumSize(QSize(91, 74))
+        self.card_frame_svg.setMinimumSize(QSize(70, 70))
+        self.card_frame_svg.setMaximumSize(QSize(86, 86))
         self.card_frame_svg.setFrameShape(QFrame.StyledPanel)
         self.card_frame_svg.setFrameShadow(QFrame.Raised)
 
@@ -74,7 +75,6 @@ class Ui_CardComponent(object):
 
         self.card_button = QPushButton(self.frame)
         self.card_button.setObjectName(u"card_button")
-        self.card_button.setMinimumSize(QSize(140, 48))
         self.card_button.setMaximumSize(QSize(140, 48))
 
         self.horizontalLayout_2.addWidget(self.card_button)

@@ -281,7 +281,7 @@ max-height: 20px;</string>
           <item>
            <widget class="QLabel" name="system_name">
             <property name="text">
-             <string>Modern IoT Dashboard PySide6</string>
+             <string>Modern Interface For IoT PySide6</string>
             </property>
            </widget>
           </item>
@@ -725,9 +725,7 @@ max-height: 20px;</string>
                        </size>
                       </property>
                       <property name="styleSheet">
-                       <string notr="true">
-
-</string>
+                       <string notr="true"/>
                       </property>
                       <property name="frameShape">
                        <enum>QFrame::NoFrame</enum>

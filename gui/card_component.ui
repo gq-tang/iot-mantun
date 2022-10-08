@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>705</width>
-    <height>193</height>
+    <width>580</width>
+    <height>152</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -70,8 +70,8 @@ QPushButton#card_button::hover{
        <widget class="QFrame" name="card_frame_svg">
         <property name="minimumSize">
          <size>
-          <width>45</width>
-          <height>45</height>
+          <width>70</width>
+          <height>70</height>
          </size>
         </property>
         <property name="maximumSize">

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'mainmTcYWF.ui'
+## Form generated from reading UI file 'main.ui'
 ##
 ## Created by: Qt User Interface Compiler version 6.3.2
 ##
@@ -18,6 +18,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
     QMainWindow, QPushButton, QSizePolicy, QSpacerItem,
     QStackedWidget, QVBoxLayout, QWidget)
+import resource_rc
 import resource_rc
 
 class Ui_MainWindow(object):
@@ -422,114 +423,12 @@ class Ui_MainWindow(object):
         self.stackedWidget.setObjectName(u"stackedWidget")
         self.temperature = QWidget()
         self.temperature.setObjectName(u"temperature")
-        self.horizontalLayout_12 = QHBoxLayout(self.temperature)
-        self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
-        self.horizontalLayout_12.setContentsMargins(12, -1, -1, -1)
-        self.circular_background = QFrame(self.temperature)
-        self.circular_background.setObjectName(u"circular_background")
-        self.circular_background.setMinimumSize(QSize(250, 250))
-        self.circular_background.setMaximumSize(QSize(250, 250))
-        self.circular_background.setStyleSheet(u"")
-        self.circular_background.setFrameShape(QFrame.NoFrame)
-        self.circular_background.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_14 = QHBoxLayout(self.circular_background)
-        self.horizontalLayout_14.setSpacing(0)
-        self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
-        self.horizontalLayout_14.setContentsMargins(0, 0, 0, 0)
-        self.circular_prog = QFrame(self.circular_background)
-        self.circular_prog.setObjectName(u"circular_prog")
-        self.circular_prog.setStyleSheet(u"")
-        self.circular_prog.setFrameShape(QFrame.NoFrame)
-        self.circular_prog.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_15 = QHBoxLayout(self.circular_prog)
-        self.horizontalLayout_15.setSpacing(0)
-        self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
-        self.horizontalLayout_15.setContentsMargins(20, 20, 20, 20)
-        self.circular_main = QFrame(self.circular_prog)
-        self.circular_main.setObjectName(u"circular_main")
-        self.circular_main.setFrameShape(QFrame.NoFrame)
-        self.circular_main.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_5 = QVBoxLayout(self.circular_main)
-        self.verticalLayout_5.setSpacing(5)
-        self.verticalLayout_5.setObjectName(u"verticalLayout_5")
-        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.verticalLayout_5.addItem(self.verticalSpacer)
-
-        self.temperature_label = QLabel(self.circular_main)
-        self.temperature_label.setObjectName(u"temperature_label")
-        self.temperature_label.setMaximumSize(QSize(16777215, 40))
-        self.temperature_label.setAlignment(Qt.AlignCenter)
-
-        self.verticalLayout_5.addWidget(self.temperature_label)
-
-        self.celsius_label = QLabel(self.circular_main)
-        self.celsius_label.setObjectName(u"celsius_label")
-        self.celsius_label.setMaximumSize(QSize(16777215, 10))
-        self.celsius_label.setAlignment(Qt.AlignCenter)
-
-        self.verticalLayout_5.addWidget(self.celsius_label)
-
-        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.verticalLayout_5.addItem(self.verticalSpacer_2)
-
-
-        self.horizontalLayout_15.addWidget(self.circular_main)
-
-
-        self.horizontalLayout_14.addWidget(self.circular_prog)
-
-
-        self.horizontalLayout_12.addWidget(self.circular_background)
-
         self.stackedWidget.addWidget(self.temperature)
         self.humidity = QWidget()
         self.humidity.setObjectName(u"humidity")
-        self.horizontalLayout_11 = QHBoxLayout(self.humidity)
-        self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
-        self.label_2 = QLabel(self.humidity)
-        self.label_2.setObjectName(u"label_2")
-        self.label_2.setAlignment(Qt.AlignCenter)
-
-        self.horizontalLayout_11.addWidget(self.label_2)
-
         self.stackedWidget.addWidget(self.humidity)
 
         self.verticalLayout_4.addWidget(self.stackedWidget)
-
-        self.frame_3 = QFrame(self.frame_controls)
-        self.frame_3.setObjectName(u"frame_3")
-        self.frame_3.setMinimumSize(QSize(0, 60))
-        self.frame_3.setFrameShape(QFrame.NoFrame)
-        self.frame_3.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_13 = QHBoxLayout(self.frame_3)
-        self.horizontalLayout_13.setObjectName(u"horizontalLayout_13")
-        self.down_button = QPushButton(self.frame_3)
-        self.down_button.setObjectName(u"down_button")
-        self.down_button.setMinimumSize(QSize(50, 50))
-        self.down_button.setMaximumSize(QSize(50, 50))
-
-        self.horizontalLayout_13.addWidget(self.down_button)
-
-        self.power_button = QPushButton(self.frame_3)
-        self.power_button.setObjectName(u"power_button")
-        self.power_button.setMinimumSize(QSize(70, 70))
-        self.power_button.setMaximumSize(QSize(70, 70))
-        self.power_button.setCheckable(False)
-        self.power_button.setChecked(False)
-
-        self.horizontalLayout_13.addWidget(self.power_button)
-
-        self.up_button = QPushButton(self.frame_3)
-        self.up_button.setObjectName(u"up_button")
-        self.up_button.setMinimumSize(QSize(50, 50))
-        self.up_button.setMaximumSize(QSize(50, 50))
-
-        self.horizontalLayout_13.addWidget(self.up_button)
-
-
-        self.verticalLayout_4.addWidget(self.frame_3)
 
 
         self.horizontalLayout_5.addWidget(self.frame_controls)
@@ -770,7 +669,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -779,7 +678,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.hamburger_menu.setText("")
-        self.system_name.setText(QCoreApplication.translate("MainWindow", u"Modern IoT Dashboard PySide6", None))
+        self.system_name.setText(QCoreApplication.translate("MainWindow", u"Modern Interface For IoT PySide6", None))
         self.search_button.setText("")
         self.email_icon.setText("")
         self.notification_icon.setText("")
@@ -787,12 +686,6 @@ class Ui_MainWindow(object):
         self.user_name.setText(QCoreApplication.translate("MainWindow", u"Luciano", None))
         self.temperature_button.setText(QCoreApplication.translate("MainWindow", u"TEMPERATURE", None))
         self.humidity_button.setText(QCoreApplication.translate("MainWindow", u"HUMIDITY", None))
-        self.temperature_label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:36pt; font-weight:700;\">0\u00b0</span></p></body></html>", None))
-        self.celsius_label.setText(QCoreApplication.translate("MainWindow", u"Celsius", None))
-        self.label_2.setText(QCoreApplication.translate("MainWindow", u"Humidity", None))
-        self.down_button.setText("")
-        self.power_button.setText("")
-        self.up_button.setText("")
         self.label_consumption.setText(QCoreApplication.translate("MainWindow", u"Solar Energy Consumption", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:24pt; font-weight:700;\">42%</span></p></body></html>", None))
         self.kwh_consumption_label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:24pt; font-weight:700;\">6.421 kWh</span></p></body></html>", None))

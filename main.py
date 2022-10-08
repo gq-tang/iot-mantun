@@ -3,8 +3,76 @@ from PySide6.QtGui import QColor, QPixmap, QIcon
 from PySide6.QtCore import Qt, QPropertyAnimation, QEasingCurve, QSize
 from PySide6.QtSvgWidgets import QSvgWidget
 
-from gui.py.ui_main import Ui_MainWindow
-from gui.py.ui_card_component import Ui_CardComponent
+from gui.ui_main import Ui_MainWindow
+from gui.ui_card_component import Ui_CardComponent
+from gui.ui_circular_controler import Ui_CircularControler
+
+class CircularControler(QWidget, Ui_CircularControler):
+    def __init__(self) -> None:
+        super().__init__()
+        self.setupUi(self)
+        
+        self.value = 0
+        self.current_state = True
+        self.updated_stylesheet = ""
+        
+        down_layout = QHBoxLayout()
+        up_layout = QHBoxLayout()
+        power_layout = QHBoxLayout()
+             
+        self.up_button.clicked.connect(lambda: self.define_temperature("up"))
+        self.down_button.clicked.connect(lambda: self.define_temperature("down"))
+        
+        self.power_button.clicked.connect(self.power)
+        
+        down_layout.addWidget(QSvgWidget("resources/icons/arrow-downward-outline.svg"))
+        up_layout.addWidget(QSvgWidget("resources/icons/arrow-upward-outline.svg"))
+        power_layout.addWidget(QSvgWidget("resources/icons/power-outline.svg"))
+        
+        self.down_button.setLayout(down_layout)
+        self.up_button.setLayout(up_layout)
+        self.power_button.setLayout(power_layout)
+        
+    def power(self):
+        if self.current_state:
+            self.circular_prog.setStyleSheet("")
+            self.temperature_label.setText('<html><head/><body><p><span style=" font-size:36pt; font-weight:700;"> -- </span></p></body></html>')
+            self.down_button.setEnabled(False)
+            self.up_button.setEnabled(False)
+            self.current_state = False
+            return
+        else:
+            self.text_base = '<html><head/><body><p><span style=" font-size:36pt; font-weight:700;">{}°</span></p></body></html>'.format(str(self.value))
+            self.circular_prog.setStyleSheet(self.updated_stylesheet)
+            self.temperature_label.setText(self.text_base)
+            self.down_button.setEnabled(True)
+            self.up_button.setEnabled(True)
+            self.current_state = True
+            return
+        
+    def define_temperature(self, direction):
+        if direction == "up" and self.value < 100:
+            self.value  += 10
+        elif direction == "down" and self.value > 0:
+            self.value -= 10
+        
+        self.stop_1 = (1 - ((self.value / 100)) - 0.01)
+        self.stop_2 = (1 - ((self.value / 100)))
+        
+        stylesheet_base = """
+        QFrame#circular_prog
+        {
+            background-color: qconicalgradient(cx:0.5, cy:0.5, angle:271, stop:{STOP_1} rgba(127, 169, 251, 0), stop:{STOP_2} rgba(238, 255, 0, 255));
+            border-radius: 125px;
+        }
+        """
+        
+        self.updated_stylesheet = stylesheet_base.replace("{STOP_1}",str(self.stop_1)).replace("{STOP_2}", str(self.stop_2))
+        
+        self.circular_prog.setStyleSheet(self.updated_stylesheet)
+        
+        self.text_base = '<html><head/><body><p><span style=" font-size:36pt; font-weight:700;">{}°</span></p></body></html>'.format(str(self.value))
+        self.temperature_label.setText(self.text_base)
 
 class CustomButton(QPushButton):
     def __init__(self, **kwargs) -> None:
@@ -55,10 +123,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         
         self.showMaximized()
         
-        self.value = 0
-        self.current_state = True
-        self.updated_stylesheet = ""
-        
         # Add a shadow on frame color black
         self.shadow = QGraphicsDropShadowEffect()
         self.shadow.setBlurRadius(80)
@@ -101,27 +165,20 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.temperature_button.clicked.connect(self.temperature_page)
         self.humidity_button.clicked.connect(self.humidity_page)
         
-        down_layout = QHBoxLayout()
-        up_layout = QHBoxLayout()
-        power_layout = QHBoxLayout()
-        
-        down_layout.addWidget(QSvgWidget("resources/icons/arrow-downward-outline.svg"))
-        up_layout.addWidget(QSvgWidget("resources/icons/arrow-upward-outline.svg"))
-        power_layout.addWidget(QSvgWidget("resources/icons/power-outline.svg"))
-        
         self.chart_frame_layout = QHBoxLayout()
         self.chart_frame_layout.addWidget(QSvgWidget("resources/images/visualization.svg"))
         
         self.frame_chart_main.setLayout(self.chart_frame_layout)
         
-        self.down_button.setLayout(down_layout)
-        self.up_button.setLayout(up_layout)
-        self.power_button.setLayout(power_layout)
+        self.circular_temp_layout = QVBoxLayout()
+        self.circular_temp = CircularControler()
+        self.temperature.setLayout(self.circular_temp_layout)
+        self.temperature.layout().addWidget(self.circular_temp)
         
-        self.up_button.clicked.connect(lambda: self.define_temperature("up"))
-        self.down_button.clicked.connect(lambda: self.define_temperature("down"))
-        
-        self.power_button.clicked.connect(self.power)
+        self.circular_humi_layout = QVBoxLayout()
+        self.circular_humi = CircularControler()
+        self.humidity.setLayout(self.circular_humi_layout)
+        self.humidity.layout().addWidget(self.circular_humi)
         
         self.traffic_chart.setPixmap(QPixmap("resources/images/traffic.png"))
         self.eletricy_consumption_chart.setPixmap(QPixmap("resources/images/eletricity.png"))
@@ -185,47 +242,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.stackedWidget.setCurrentIndex(1)
             self.humidity_button.setChecked(True)
             self.temperature_button.setChecked(False)
-            
-    def power(self):
-        if self.current_state:
-            self.circular_prog.setStyleSheet("")
-            self.temperature_label.setText('<html><head/><body><p><span style=" font-size:36pt; font-weight:700;"> -- </span></p></body></html>')
-            self.down_button.setEnabled(False)
-            self.up_button.setEnabled(False)
-            self.current_state = False
-            return
-        else:
-            self.text_base = '<html><head/><body><p><span style=" font-size:36pt; font-weight:700;">{}°</span></p></body></html>'.format(str(self.value))
-            self.circular_prog.setStyleSheet(self.updated_stylesheet)
-            self.temperature_label.setText(self.text_base)
-            self.down_button.setEnabled(True)
-            self.up_button.setEnabled(True)
-            self.current_state = True
-            return
-        
-    def define_temperature(self, direction):
-        if direction == "up" and self.value < 100:
-            self.value  += 10
-        elif direction == "down" and self.value > 0:
-            self.value -= 10
-        
-        self.stop_1 = (1 - ((self.value / 100)) - 0.01)
-        self.stop_2 = (1 - ((self.value / 100)))
-        
-        stylesheet_base = """
-        QFrame#circular_prog
-        {
-            background-color: qconicalgradient(cx:0.5, cy:0.5, angle:271, stop:{STOP_1} rgba(127, 169, 251, 0), stop:{STOP_2} rgba(238, 255, 0, 255));
-            border-radius: 125px;
-        }
-        """
-        
-        self.updated_stylesheet = stylesheet_base.replace("{STOP_1}",str(self.stop_1)).replace("{STOP_2}", str(self.stop_2))
-        
-        self.circular_prog.setStyleSheet(self.updated_stylesheet)
-        
-        self.text_base = '<html><head/><body><p><span style=" font-size:36pt; font-weight:700;">{}°</span></p></body></html>'.format(str(self.value))
-        self.temperature_label.setText(self.text_base)
         
     def toggle_menu(self):
         if self.right_menu.width() == 251:
