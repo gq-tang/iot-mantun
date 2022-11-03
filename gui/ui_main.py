@@ -16,8 +16,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
-    QMainWindow, QPushButton, QSizePolicy, QSpacerItem,
-    QStackedWidget, QVBoxLayout, QWidget)
+    QMainWindow, QPushButton, QSizePolicy, QStackedWidget,
+    QVBoxLayout, QWidget)
 import resource_rc
 import resource_rc
 
@@ -473,80 +473,6 @@ class Ui_MainWindow(object):
         self.main_frame_consumption.setObjectName(u"main_frame_consumption")
         self.main_frame_consumption.setFrameShape(QFrame.NoFrame)
         self.main_frame_consumption.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_20 = QHBoxLayout(self.main_frame_consumption)
-        self.horizontalLayout_20.setObjectName(u"horizontalLayout_20")
-        self.horizontalLayout_20.setContentsMargins(15, 20, 15, 22)
-        self.circular_cc_bg = QFrame(self.main_frame_consumption)
-        self.circular_cc_bg.setObjectName(u"circular_cc_bg")
-        self.circular_cc_bg.setMinimumSize(QSize(120, 120))
-        self.circular_cc_bg.setMaximumSize(QSize(120, 120))
-        self.circular_cc_bg.setFrameShape(QFrame.NoFrame)
-        self.circular_cc_bg.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_21 = QHBoxLayout(self.circular_cc_bg)
-        self.horizontalLayout_21.setSpacing(0)
-        self.horizontalLayout_21.setObjectName(u"horizontalLayout_21")
-        self.horizontalLayout_21.setContentsMargins(0, 0, 0, 0)
-        self.circular_cc_prog = QFrame(self.circular_cc_bg)
-        self.circular_cc_prog.setObjectName(u"circular_cc_prog")
-        self.circular_cc_prog.setStyleSheet(u"QFrame#circular_cc_prog{\n"
-"	background-color: qconicalgradient(cx:0.5, cy:0.5, angle:90, stop:0.749 rgba(127, 169, 251, 0), stop:0.75 rgba(155, 0, 255, 255));\n"
-"	border-radius: 60px;\n"
-"}")
-        self.circular_cc_prog.setFrameShape(QFrame.NoFrame)
-        self.circular_cc_prog.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_22 = QHBoxLayout(self.circular_cc_prog)
-        self.horizontalLayout_22.setObjectName(u"horizontalLayout_22")
-        self.circular_cc_main = QFrame(self.circular_cc_prog)
-        self.circular_cc_main.setObjectName(u"circular_cc_main")
-        self.circular_cc_main.setFrameShape(QFrame.NoFrame)
-        self.circular_cc_main.setFrameShadow(QFrame.Raised)
-        self.horizontalLayout_23 = QHBoxLayout(self.circular_cc_main)
-        self.horizontalLayout_23.setObjectName(u"horizontalLayout_23")
-        self.label = QLabel(self.circular_cc_main)
-        self.label.setObjectName(u"label")
-        self.label.setAlignment(Qt.AlignCenter)
-
-        self.horizontalLayout_23.addWidget(self.label)
-
-
-        self.horizontalLayout_22.addWidget(self.circular_cc_main)
-
-
-        self.horizontalLayout_21.addWidget(self.circular_cc_prog)
-
-
-        self.horizontalLayout_20.addWidget(self.circular_cc_bg)
-
-        self.frame_12 = QFrame(self.main_frame_consumption)
-        self.frame_12.setObjectName(u"frame_12")
-        self.frame_12.setFrameShape(QFrame.NoFrame)
-        self.frame_12.setFrameShadow(QFrame.Raised)
-        self.verticalLayout_10 = QVBoxLayout(self.frame_12)
-        self.verticalLayout_10.setSpacing(0)
-        self.verticalLayout_10.setObjectName(u"verticalLayout_10")
-        self.verticalSpacer_5 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.verticalLayout_10.addItem(self.verticalSpacer_5)
-
-        self.kwh_consumption_label = QLabel(self.frame_12)
-        self.kwh_consumption_label.setObjectName(u"kwh_consumption_label")
-        self.kwh_consumption_label.setAlignment(Qt.AlignCenter)
-
-        self.verticalLayout_10.addWidget(self.kwh_consumption_label)
-
-        self.kwh_max_label = QLabel(self.frame_12)
-        self.kwh_max_label.setObjectName(u"kwh_max_label")
-        self.kwh_max_label.setAlignment(Qt.AlignCenter)
-
-        self.verticalLayout_10.addWidget(self.kwh_max_label)
-
-        self.verticalSpacer_7 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.verticalLayout_10.addItem(self.verticalSpacer_7)
-
-
-        self.horizontalLayout_20.addWidget(self.frame_12)
-
 
         self.verticalLayout_9.addWidget(self.main_frame_consumption)
 
@@ -687,9 +613,6 @@ class Ui_MainWindow(object):
         self.temperature_button.setText(QCoreApplication.translate("MainWindow", u"TEMPERATURE", None))
         self.humidity_button.setText(QCoreApplication.translate("MainWindow", u"HUMIDITY", None))
         self.label_consumption.setText(QCoreApplication.translate("MainWindow", u"Solar Energy Consumption", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:24pt; font-weight:700;\">42%</span></p></body></html>", None))
-        self.kwh_consumption_label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\" font-size:24pt; font-weight:700;\">6.421 kWh</span></p></body></html>", None))
-        self.kwh_max_label.setText(QCoreApplication.translate("MainWindow", u"<html><head/><body><p><span style=\"font-size:13px; font-weight:600; color:#b4b4db; background-color:#323259;\">out of 8.421 kWh</span></p></body></html>", None))
         self.label_traffic.setText(QCoreApplication.translate("MainWindow", u"Traffic Consumption", None))
         self.traffic_chart.setText("")
         self.eletricity_button.setText(QCoreApplication.translate("MainWindow", u"ELETRICITY CONSUMPTION", None))

@@ -6,6 +6,12 @@ from PySide6.QtSvgWidgets import QSvgWidget
 from gui.ui_main import Ui_MainWindow
 from gui.ui_card_component import Ui_CardComponent
 from gui.ui_circular_controler import Ui_CircularControler
+from gui.ui_consumption import Ui_Consumption
+
+class Consumption(QWidget, Ui_Consumption):
+    def __init__(self) -> None:
+        super().__init__()
+        self.setupUi(self)
 
 class CircularControler(QWidget, Ui_CircularControler):
     def __init__(self) -> None:
@@ -233,6 +239,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.right_menu.setLayout(self.buttons_layout)
         self.right_menu.layout().setContentsMargins(0, 0, 0, 0)
         
+        
+        self.consumption_layout = QVBoxLayout()
+        self.consumption_widget = Consumption()
+        self.main_frame_consumption.setLayout(self.consumption_layout)
+        self.main_frame_consumption.layout().addWidget(self.consumption_widget)
+        
     def temperature_page(self):
             self.stackedWidget.setCurrentIndex(0)
             self.temperature_button.setChecked(True)
@@ -254,6 +266,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.animation.setEndValue(new_width)
         self.animation.setEasingCurve(QEasingCurve.OutCubic)
         self.animation.start()
+        
+        
+        
         
         
 app = QApplication([])
