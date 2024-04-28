@@ -1,7 +1,3 @@
-Here's the README translated into English:
-
----
-
 # Modern Dashboard Interface with PySide6 or PyQt6
 
 <h4 align="center">
