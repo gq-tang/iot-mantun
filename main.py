@@ -197,40 +197,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         
         self.iot_dashboard_button = CustomButton(
             icon="resources/icons/home-outline.svg",
-            text="IoT Dashboard"
+            text="仪表板"
         )
         
-        self.sound_devices_button = CustomButton(
-            icon="resources/icons/music-outline.svg",
-            text="Sound Devices"
-        )
-        
-        self.wifi_devices_button = CustomButton(
-            icon="resources/icons/wifi-outline.svg",
-            text="Wifi Devices"
-        )
-        
+
         self.settings_button = CustomButton(
-            icon="resources/icons/settings-2-outline.svg",
-            text="Settings"
+            icon="resources/icons/switch.svg",
+            text="曼顿空开"
         )
-        
-        self.camera_devices_button = CustomButton(
-            icon="resources/icons/video-outline.svg",
-            text="Camera Devices"
-        )
-        
-        self.lock_devices_button = CustomButton(
-            icon="resources/icons/unlock-outline.svg",
-            text="Eletronic Locks"
-        )
-        
         
         self.buttons_layout.addWidget(self.iot_dashboard_button) 
-        self.buttons_layout.addWidget(self.sound_devices_button) 
-        self.buttons_layout.addWidget(self.wifi_devices_button)
-        self.buttons_layout.addWidget(self.lock_devices_button)
-        self.buttons_layout.addWidget(self.camera_devices_button)
+
         self.buttons_layout.addWidget(self.settings_button) 
          
         
