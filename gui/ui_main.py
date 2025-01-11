@@ -353,6 +353,7 @@ class Ui_MainWindow(object):
 
         self.left_main = QFrame(self.main_frame)
         self.left_main.setObjectName(u"left_main")
+        self.left_main.setMaximumSize(QSize(1864, 16777215))
         self.left_main.setFrameShape(QFrame.Shape.NoFrame)
         self.left_main.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_3 = QVBoxLayout(self.left_main)
