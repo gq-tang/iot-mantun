@@ -126,7 +126,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        
+        self.setWindowFlag(Qt.FramelessWindowHint)
         self.showMaximized()
         
         # Add a shadow on frame color black
