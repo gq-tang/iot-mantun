@@ -335,6 +335,7 @@ class Ui_MainWindow(object):
 
         self.main_frame = QFrame(self.centralwidget)
         self.main_frame.setObjectName(u"main_frame")
+        self.main_frame.setMaximumSize(QSize(1920, 1080))
         self.main_frame.setFrameShape(QFrame.Shape.NoFrame)
         self.main_frame.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout_8 = QHBoxLayout(self.main_frame)

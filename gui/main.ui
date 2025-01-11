@@ -481,6 +481,12 @@ max-height: 20px;</string>
     </item>
     <item>
      <widget class="QFrame" name="main_frame">
+      <property name="maximumSize">
+       <size>
+        <width>1920</width>
+        <height>1080</height>
+       </size>
+      </property>
       <property name="frameShape">
        <enum>QFrame::Shape::NoFrame</enum>
       </property>
