@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'card_component.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.3.2
+## Created by: Qt User Interface Compiler version 6.8.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -17,6 +17,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QFrame, QHBoxLayout, QLabel,
     QPushButton, QSizePolicy, QWidget)
+import resource_rc
 
 class Ui_CardComponent(object):
     def setupUi(self, CardComponent):
@@ -55,29 +56,26 @@ class Ui_CardComponent(object):
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.frame = QFrame(CardComponent)
         self.frame.setObjectName(u"frame")
-        self.frame.setFrameShape(QFrame.StyledPanel)
-        self.frame.setFrameShadow(QFrame.Raised)
+        self.frame.setFrameShape(QFrame.Shape.StyledPanel)
+        self.frame.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout_2 = QHBoxLayout(self.frame)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
-        self.card_frame_svg = QFrame(self.frame)
-        self.card_frame_svg.setObjectName(u"card_frame_svg")
-        self.card_frame_svg.setMinimumSize(QSize(70, 70))
-        self.card_frame_svg.setMaximumSize(QSize(86, 86))
-        self.card_frame_svg.setFrameShape(QFrame.StyledPanel)
-        self.card_frame_svg.setFrameShadow(QFrame.Raised)
+        self.card_button = QPushButton(self.frame)
+        self.card_button.setObjectName(u"card_button")
+        self.card_button.setMaximumSize(QSize(64, 64))
+        icon = QIcon()
+        icon.addFile(u":/icons/resources/icons/switch-off.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
+        icon.addFile(u":/icons/resources/icons/switch-on.svg", QSize(), QIcon.Mode.Normal, QIcon.State.On)
+        self.card_button.setIcon(icon)
+        self.card_button.setIconSize(QSize(64, 64))
+        self.card_button.setCheckable(True)
 
-        self.horizontalLayout_2.addWidget(self.card_frame_svg)
+        self.horizontalLayout_2.addWidget(self.card_button)
 
         self.card_text = QLabel(self.frame)
         self.card_text.setObjectName(u"card_text")
 
         self.horizontalLayout_2.addWidget(self.card_text)
-
-        self.card_button = QPushButton(self.frame)
-        self.card_button.setObjectName(u"card_button")
-        self.card_button.setMaximumSize(QSize(140, 48))
-
-        self.horizontalLayout_2.addWidget(self.card_button)
 
 
         self.horizontalLayout.addWidget(self.frame)
@@ -90,7 +88,7 @@ class Ui_CardComponent(object):
 
     def retranslateUi(self, CardComponent):
         CardComponent.setWindowTitle(QCoreApplication.translate("CardComponent", u"Form", None))
-        self.card_text.setText("")
         self.card_button.setText("")
+        self.card_text.setText("")
     # retranslateUi
 

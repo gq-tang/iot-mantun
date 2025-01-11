@@ -100,23 +100,23 @@ class CardComponent(QWidget, Ui_CardComponent):
         super().__init__()
         self.setupUi(self)
         
-        if 'frame_svg_color_1' in kwargs and 'frame_svg_color_2' in kwargs:
-            self.frame.setStyleSheet("QFrame#card_frame_svg{background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 %s, stop:1 %s);border-radius:10px}" % (kwargs.get('frame_svg_color_1'), kwargs.get('frame_svg_color_2')))
+        # if 'frame_svg_color_1' in kwargs and 'frame_svg_color_2' in kwargs:
+        #     self.frame.setStyleSheet("QFrame#card_frame_svg{background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 %s, stop:1 %s);border-radius:10px}" % (kwargs.get('frame_svg_color_1'), kwargs.get('frame_svg_color_2')))
 
-        self.svg  = QSvgWidget(kwargs.get('svg_path'))
-        self.svg.setMaximumSize(35, 35)
+        # self.svg  = QSvgWidget(kwargs.get('svg_path'))
+        # self.svg.setMaximumSize(35, 35)
         
-        self.frame_svg_layout = QHBoxLayout()
+        # self.frame_svg_layout = QHBoxLayout()
         
-        self.frame_svg_layout.addWidget(self.svg)
-        self.card_frame_svg.setLayout(self.frame_svg_layout)
+        # self.frame_svg_layout.addWidget(self.svg)
+        # self.card_frame_svg.setLayout(self.frame_svg_layout)
         
         self.card_text.setText(kwargs.get('title'))
         
-        if not kwargs.get('button'):
-            self.card_button.hide()
-        else:
-            self.card_button.setText(kwargs.get('button'))
+        # if not kwargs.get('button'):
+        #     self.card_button.hide()
+        # else:
+        #     self.card_button.setText(kwargs.get('button'))
         
         self.horizontalLayout = QHBoxLayout()
         self.frame.setLayout(self.horizontalLayout)
@@ -140,25 +140,19 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         
         self.hamburger_menu.clicked.connect(self.toggle_menu)
         
-        
-        self.card_component = CardComponent(svg_path="resources/icons/pantone-outline.svg", title="Title of label card", button="Support")
-        self.card_component_2 = CardComponent(svg_path="resources/icons/briefcase-outline.svg", title="Title of label card 2", button="Documentation")
-        
-        self.form_layout = QHBoxLayout()
-        self.form_layout.addWidget(self.card_component)
-        self.form_layout.addWidget(self.card_component_2)
+        self.card_component_1 = CardComponent( title="总路")
+        self.card_component_2 = CardComponent(title="1路")
+        self.card_component_3 = CardComponent( title="2路")
+        self.card_component_4 = CardComponent( title="3路")
+        self.card_component_5 = CardComponent(title="4路")
+        self.card_component_6 = CardComponent(title="5路")
 
-        self.top_main_frame.setLayout(self.form_layout)
-        self.top_main_frame.layout().setContentsMargins(0, 0, 0, 0)
-        self.top_main_frame.layout().setSpacing(30)
-        
-        
-        self.card_component_3 = CardComponent(svg_path="resources/icons/bulb-outline.svg", title="Title of label card")
-        self.card_component_4 = CardComponent(svg_path="resources/icons/loader-outline.svg", title="Title of label card 2", frame_svg_color_1="#00D68F", frame_svg_color_2="#2AE59A")
-        self.card_component_5 = CardComponent(svg_path="resources/icons/speaker-outline.svg", title="Title of label card 3")
-        self.card_component_6 = CardComponent(svg_path="resources/icons/mic-outline.svg", title="Title of label card 4", frame_svg_color_1="#FEAA01", frame_svg_color_2="#FEC84A")
+        self.card_component_1.card_button.clicked.connect(mainGate)
+
         
         self.form_layout_2 = QHBoxLayout()
+        self.form_layout_2.addWidget(self.card_component_1)
+        self.form_layout_2.addWidget(self.card_component_2)
         self.form_layout_2.addWidget(self.card_component_3)
         self.form_layout_2.addWidget(self.card_component_4)
         self.form_layout_2.addWidget(self.card_component_5)
@@ -199,16 +193,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             icon="resources/icons/home-outline.svg",
             text="仪表板"
         )
-        
-
-        self.settings_button = CustomButton(
-            icon="resources/icons/switch.svg",
-            text="曼顿空开"
-        )
+         
         
         self.buttons_layout.addWidget(self.iot_dashboard_button) 
-
-        self.buttons_layout.addWidget(self.settings_button) 
          
         
         self.buttons_layout.addItem(self.spacer)
@@ -245,7 +232,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.animation.start()
         
         
-        
+def mainGate(clicked):
+    if clicked:
+        print('main gate checked')
+    else:
+        print('main gate no checked')
         
         
 app = QApplication([])

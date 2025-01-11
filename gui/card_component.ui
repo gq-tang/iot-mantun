@@ -60,31 +60,36 @@ QPushButton#card_button::hover{
    <item>
     <widget class="QFrame" name="frame">
      <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
+      <enum>QFrame::Shape::StyledPanel</enum>
      </property>
      <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
+      <enum>QFrame::Shadow::Raised</enum>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
-       <widget class="QFrame" name="card_frame_svg">
-        <property name="minimumSize">
-         <size>
-          <width>70</width>
-          <height>70</height>
-         </size>
-        </property>
+       <widget class="QPushButton" name="card_button">
         <property name="maximumSize">
          <size>
-          <width>86</width>
-          <height>86</height>
+          <width>64</width>
+          <height>64</height>
          </size>
         </property>
-        <property name="frameShape">
-         <enum>QFrame::StyledPanel</enum>
+        <property name="text">
+         <string/>
         </property>
-        <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
+        <property name="icon">
+         <iconset resource="../resource.qrc">
+          <normaloff>:/icons/resources/icons/switch-off.svg</normaloff>
+          <normalon>:/icons/resources/icons/switch-on.svg</normalon>:/icons/resources/icons/switch-off.svg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>64</width>
+          <height>64</height>
+         </size>
+        </property>
+        <property name="checkable">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -95,24 +100,13 @@ QPushButton#card_button::hover{
         </property>
        </widget>
       </item>
-      <item>
-       <widget class="QPushButton" name="card_button">
-        <property name="maximumSize">
-         <size>
-          <width>140</width>
-          <height>48</height>
-         </size>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
      </layout>
     </widget>
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../resource.qrc"/>
+ </resources>
  <connections/>
 </ui>

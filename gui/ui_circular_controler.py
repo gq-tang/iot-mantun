@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'circular_controler.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.3.2
+## Created by: Qt User Interface Compiler version 6.8.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -58,7 +58,7 @@ class Ui_CircularControler(object):
 "")
         self.verticalLayout = QVBoxLayout(CircularControler)
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.verticalLayout.addItem(self.verticalSpacer_3)
 
@@ -67,8 +67,8 @@ class Ui_CircularControler(object):
         self.circular_background.setMinimumSize(QSize(250, 250))
         self.circular_background.setMaximumSize(QSize(250, 250))
         self.circular_background.setStyleSheet(u"")
-        self.circular_background.setFrameShape(QFrame.NoFrame)
-        self.circular_background.setFrameShadow(QFrame.Raised)
+        self.circular_background.setFrameShape(QFrame.Shape.NoFrame)
+        self.circular_background.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout_14 = QHBoxLayout(self.circular_background)
         self.horizontalLayout_14.setSpacing(0)
         self.horizontalLayout_14.setObjectName(u"horizontalLayout_14")
@@ -76,38 +76,38 @@ class Ui_CircularControler(object):
         self.circular_prog = QFrame(self.circular_background)
         self.circular_prog.setObjectName(u"circular_prog")
         self.circular_prog.setStyleSheet(u"")
-        self.circular_prog.setFrameShape(QFrame.NoFrame)
-        self.circular_prog.setFrameShadow(QFrame.Raised)
+        self.circular_prog.setFrameShape(QFrame.Shape.NoFrame)
+        self.circular_prog.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout_15 = QHBoxLayout(self.circular_prog)
         self.horizontalLayout_15.setSpacing(0)
         self.horizontalLayout_15.setObjectName(u"horizontalLayout_15")
         self.horizontalLayout_15.setContentsMargins(20, 20, 20, 20)
         self.circular_main = QFrame(self.circular_prog)
         self.circular_main.setObjectName(u"circular_main")
-        self.circular_main.setFrameShape(QFrame.NoFrame)
-        self.circular_main.setFrameShadow(QFrame.Raised)
+        self.circular_main.setFrameShape(QFrame.Shape.NoFrame)
+        self.circular_main.setFrameShadow(QFrame.Shadow.Raised)
         self.verticalLayout_5 = QVBoxLayout(self.circular_main)
         self.verticalLayout_5.setSpacing(5)
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
-        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer = QSpacerItem(20, 35, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.verticalLayout_5.addItem(self.verticalSpacer)
 
         self.temperature_label = QLabel(self.circular_main)
         self.temperature_label.setObjectName(u"temperature_label")
-        self.temperature_label.setMaximumSize(QSize(16777215, 40))
-        self.temperature_label.setAlignment(Qt.AlignCenter)
+        self.temperature_label.setMaximumSize(QSize(16777215, 50))
+        self.temperature_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.verticalLayout_5.addWidget(self.temperature_label)
 
         self.celsius_label = QLabel(self.circular_main)
         self.celsius_label.setObjectName(u"celsius_label")
-        self.celsius_label.setMaximumSize(QSize(16777215, 10))
-        self.celsius_label.setAlignment(Qt.AlignCenter)
+        self.celsius_label.setMaximumSize(QSize(16777215, 20))
+        self.celsius_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.verticalLayout_5.addWidget(self.celsius_label)
 
-        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer_2 = QSpacerItem(20, 35, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.verticalLayout_5.addItem(self.verticalSpacer_2)
 
@@ -120,16 +120,16 @@ class Ui_CircularControler(object):
 
         self.verticalLayout.addWidget(self.circular_background)
 
-        self.verticalSpacer_4 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer_4 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.verticalLayout.addItem(self.verticalSpacer_4)
 
         self.frame_3 = QFrame(CircularControler)
         self.frame_3.setObjectName(u"frame_3")
-        self.frame_3.setMinimumSize(QSize(0, 60))
-        self.frame_3.setMaximumSize(QSize(250, 100))
-        self.frame_3.setFrameShape(QFrame.NoFrame)
-        self.frame_3.setFrameShadow(QFrame.Raised)
+        self.frame_3.setMinimumSize(QSize(0, 80))
+        self.frame_3.setMaximumSize(QSize(250, 120))
+        self.frame_3.setFrameShape(QFrame.Shape.NoFrame)
+        self.frame_3.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout_13 = QHBoxLayout(self.frame_3)
         self.horizontalLayout_13.setObjectName(u"horizontalLayout_13")
         self.down_button = QPushButton(self.frame_3)
