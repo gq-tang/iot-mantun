@@ -1,2 +1,2 @@
 build:
-	pyinstaller --onefile --noconsole --icon=app.ico main.py
+	pyinstaller --onefile --noconsole --icon=app.ico main.py --add-data "resources:resources"
