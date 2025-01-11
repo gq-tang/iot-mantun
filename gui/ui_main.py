@@ -26,7 +26,7 @@ class Ui_MainWindow(object):
             MainWindow.setObjectName(u"MainWindow")
         MainWindow.resize(1390, 657)
         MainWindow.setMinimumSize(QSize(0, 0))
-        MainWindow.setMaximumSize(QSize(1920, 16777214))
+        MainWindow.setMaximumSize(QSize(1920, 1080))
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.centralwidget.setStyleSheet(u"QLabel, QPushButton{\n"
