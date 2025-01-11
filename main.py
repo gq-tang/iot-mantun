@@ -150,15 +150,19 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.card_component_1.card_button.clicked.connect(mainGate)
 
-        
+        self.form_layout_1=QHBoxLayout()
+        self.form_layout_1.addWidget(self.card_component_1)
+        self.form_layout_1.addWidget(self.card_component_2)
+        self.form_layout_1.addWidget(self.card_component_3)
+        self.top_main_frame.setLayout(self.form_layout_1)
+        self.top_main_frame.layout().setContentsMargins(0, 0, 0, 0)
+        self.top_main_frame.layout().setSpacing(30)
+
         self.form_layout_2 = QHBoxLayout()
-        self.form_layout_2.addWidget(self.card_component_1)
-        self.form_layout_2.addWidget(self.card_component_2)
-        self.form_layout_2.addWidget(self.card_component_3)
         self.form_layout_2.addWidget(self.card_component_4)
         self.form_layout_2.addWidget(self.card_component_5)
         self.form_layout_2.addWidget(self.card_component_6)
-
+ 
         self.middle_main_frame.setLayout(self.form_layout_2)
         self.middle_main_frame.layout().setContentsMargins(0, 0, 0, 0)
         self.middle_main_frame.layout().setSpacing(30)
