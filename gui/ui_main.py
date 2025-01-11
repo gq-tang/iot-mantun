@@ -549,12 +549,6 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_16.addWidget(self.eletricity_button)
 
-        self.devices_button = QPushButton(self.frame_11)
-        self.devices_button.setObjectName(u"devices_button")
-        self.devices_button.setCheckable(True)
-
-        self.horizontalLayout_16.addWidget(self.devices_button)
-
 
         self.verticalLayout_6.addWidget(self.frame_11)
 
@@ -609,13 +603,12 @@ class Ui_MainWindow(object):
         self.notification_icon.setText("")
         self.user_pic.setText("")
         self.user_name.setText(QCoreApplication.translate("MainWindow", u"Admin", None))
-        self.temperature_button.setText(QCoreApplication.translate("MainWindow", u"TEMPERATURE", None))
-        self.humidity_button.setText(QCoreApplication.translate("MainWindow", u"HUMIDITY", None))
-        self.label_consumption.setText(QCoreApplication.translate("MainWindow", u"Solar Energy Consumption", None))
-        self.label_traffic.setText(QCoreApplication.translate("MainWindow", u"Traffic Consumption", None))
+        self.temperature_button.setText(QCoreApplication.translate("MainWindow", u"\u6e29\u5ea6", None))
+        self.humidity_button.setText(QCoreApplication.translate("MainWindow", u"\u6e7f\u5ea6", None))
+        self.label_consumption.setText(QCoreApplication.translate("MainWindow", u"\u7535\u91cf", None))
+        self.label_traffic.setText(QCoreApplication.translate("MainWindow", u"\u7535\u6d41", None))
         self.traffic_chart.setText("")
-        self.eletricity_button.setText(QCoreApplication.translate("MainWindow", u"ELETRICITY CONSUMPTION", None))
-        self.devices_button.setText(QCoreApplication.translate("MainWindow", u"DEVICES", None))
+        self.eletricity_button.setText(QCoreApplication.translate("MainWindow", u"\u7535\u91cf\u7edf\u8ba1", None))
         self.eletricy_consumption_chart.setText("")
     # retranslateUi
 

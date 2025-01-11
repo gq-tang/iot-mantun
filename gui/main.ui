@@ -677,7 +677,7 @@ max-height: 20px;</string>
                    <item>
                     <widget class="QPushButton" name="temperature_button">
                      <property name="text">
-                      <string>TEMPERATURE</string>
+                      <string>温度</string>
                      </property>
                      <property name="checkable">
                       <bool>true</bool>
@@ -690,7 +690,7 @@ max-height: 20px;</string>
                    <item>
                     <widget class="QPushButton" name="humidity_button">
                      <property name="text">
-                      <string>HUMIDITY</string>
+                      <string>湿度</string>
                      </property>
                      <property name="checkable">
                       <bool>true</bool>
@@ -808,7 +808,7 @@ max-height: 20px;</string>
                       <item>
                        <widget class="QLabel" name="label_consumption">
                         <property name="text">
-                         <string>Solar Energy Consumption</string>
+                         <string>电量</string>
                         </property>
                        </widget>
                       </item>
@@ -882,7 +882,7 @@ max-height: 20px;</string>
                       <item>
                        <widget class="QLabel" name="label_traffic">
                         <property name="text">
-                         <string>Traffic Consumption</string>
+                         <string>电流</string>
                         </property>
                        </widget>
                       </item>
@@ -971,22 +971,12 @@ max-height: 20px;</string>
                    <item>
                     <widget class="QPushButton" name="eletricity_button">
                      <property name="text">
-                      <string>ELETRICITY CONSUMPTION</string>
+                      <string>电量统计</string>
                      </property>
                      <property name="checkable">
                       <bool>true</bool>
                      </property>
                      <property name="checked">
-                      <bool>true</bool>
-                     </property>
-                    </widget>
-                   </item>
-                   <item>
-                    <widget class="QPushButton" name="devices_button">
-                     <property name="text">
-                      <string>DEVICES</string>
-                     </property>
-                     <property name="checkable">
                       <bool>true</bool>
                      </property>
                     </widget>
