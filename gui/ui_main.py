@@ -260,12 +260,12 @@ class Ui_MainWindow(object):
         self.frame_6.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout_4 = QHBoxLayout(self.frame_6)
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
-        self.email_icon = QLabel(self.frame_6)
-        self.email_icon.setObjectName(u"email_icon")
-        self.email_icon.setPixmap(QPixmap(u":/icons/resources/icons/email-outline.svg"))
-        self.email_icon.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.notify_icon = QLabel(self.frame_6)
+        self.notify_icon.setObjectName(u"notify_icon")
+        self.notify_icon.setPixmap(QPixmap(u":/icons/resources/icons/bell-outline.svg"))
+        self.notify_icon.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
-        self.horizontalLayout_4.addWidget(self.email_icon)
+        self.horizontalLayout_4.addWidget(self.notify_icon)
 
 
         self.horizontalLayout.addWidget(self.frame_6)
@@ -287,12 +287,12 @@ class Ui_MainWindow(object):
         self.frame_7.setFrameShadow(QFrame.Shadow.Raised)
         self.horizontalLayout_3 = QHBoxLayout(self.frame_7)
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
-        self.notification_icon = QLabel(self.frame_7)
-        self.notification_icon.setObjectName(u"notification_icon")
-        self.notification_icon.setPixmap(QPixmap(u":/icons/resources/icons/bell-outline.svg"))
-        self.notification_icon.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.exit_icon = QLabel(self.frame_7)
+        self.exit_icon.setObjectName(u"exit_icon")
+        self.exit_icon.setPixmap(QPixmap(u":/icons/resources/icons/exit.svg"))
+        self.exit_icon.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
-        self.horizontalLayout_3.addWidget(self.notification_icon)
+        self.horizontalLayout_3.addWidget(self.exit_icon)
 
 
         self.horizontalLayout.addWidget(self.frame_7)
@@ -601,8 +601,8 @@ class Ui_MainWindow(object):
         self.hamburger_menu.setText("")
         self.system_name.setText(QCoreApplication.translate("MainWindow", u"Seva\u7a7a\u5f00\u63a7\u5236\u7cfb\u7edf", None))
         self.search_button.setText("")
-        self.email_icon.setText("")
-        self.notification_icon.setText("")
+        self.notify_icon.setText("")
+        self.exit_icon.setText("")
         self.user_pic.setText("")
         self.user_name.setText(QCoreApplication.translate("MainWindow", u"Admin", None))
         self.temperature_button.setText(QCoreApplication.translate("MainWindow", u"\u6e29\u5ea6", None))

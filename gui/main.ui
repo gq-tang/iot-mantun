@@ -352,12 +352,12 @@ max-height: 20px;</string>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_4">
           <item>
-           <widget class="QLabel" name="email_icon">
+           <widget class="QLabel" name="notify_icon">
             <property name="text">
              <string/>
             </property>
             <property name="pixmap">
-             <pixmap resource="../resource.qrc">:/icons/resources/icons/email-outline.svg</pixmap>
+             <pixmap resource="../resource.qrc">:/icons/resources/icons/bell-outline.svg</pixmap>
             </property>
             <property name="alignment">
              <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -400,12 +400,12 @@ max-height: 20px;</string>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
-           <widget class="QLabel" name="notification_icon">
+           <widget class="QLabel" name="exit_icon">
             <property name="text">
              <string/>
             </property>
             <property name="pixmap">
-             <pixmap resource="../resource.qrc">:/icons/resources/icons/bell-outline.svg</pixmap>
+             <pixmap resource="../resource.qrc">:/icons/resources/icons/exit.svg</pixmap>
             </property>
             <property name="alignment">
              <set>Qt::AlignmentFlag::AlignCenter</set>

@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QApplication, QMainWindow, QGraphicsDropShadowEffect, QHBoxLayout, QVBoxLayout, QLabel, QPushButton, QWidget, QFrame, QSpacerItem, QSizePolicy
 from PySide6.QtGui import QColor, QPixmap, QIcon
-from PySide6.QtCore import Qt, QPropertyAnimation, QEasingCurve, QSize
+from PySide6.QtCore import Qt, QPropertyAnimation, QEasingCurve, QSize,Signal
 from PySide6.QtSvgWidgets import QSvgWidget
 
 from gui.ui_main import Ui_MainWindow
@@ -123,10 +123,16 @@ class CardComponent(QWidget, Ui_CardComponent):
         
 
 class MainWindow(QMainWindow, Ui_MainWindow):
+    def exitMousePressEvent(self,event):
+        self.close()
+    
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-        # self.setWindowFlag(Qt.FramelessWindowHint)
+        self.setWindowFlag(Qt.FramelessWindowHint)
+
+        self.frame_7.mousePressEvent=self.exitMousePressEvent
+        
         # self.resize(1920, 1080)
         self.showMaximized()
         
