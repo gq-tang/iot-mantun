@@ -26,6 +26,12 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="maximumSize">
+    <size>
+     <width>1280</width>
+     <height>800</height>
+    </size>
+   </property>
    <property name="styleSheet">
     <string notr="true">QLabel, QPushButton{
 	color: white;

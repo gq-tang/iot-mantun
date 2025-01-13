@@ -121,6 +121,8 @@ class CardComponent(QWidget, Ui_CardComponent):
         self.horizontalLayout = QHBoxLayout()
         self.frame.setLayout(self.horizontalLayout)
         
+    def setText(self,text):
+        self.card_text.setText(text)    
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def exitMousePressEvent(self,event):
@@ -233,8 +235,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def toggle_menu(self):
         if self.right_menu.width() == 251:
             new_width = 56
+            self.iot_dashboard_button.setText('')
         else:
             new_width = 251
+            self.iot_dashboard_button.setText('仪表板')
             
         self.animation = QPropertyAnimation(self.right_menu, b"minimumWidth")
         self.animation.setDuration(500)

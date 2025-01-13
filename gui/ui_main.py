@@ -29,6 +29,7 @@ class Ui_MainWindow(object):
         MainWindow.setMaximumSize(QSize(1280, 800))
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
+        self.centralwidget.setMaximumSize(QSize(1280, 800))
         self.centralwidget.setStyleSheet(u"QLabel, QPushButton{\n"
 "	color: white;\n"
 "}\n"
