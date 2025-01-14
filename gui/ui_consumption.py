@@ -105,7 +105,7 @@ class Ui_Consumption(object):
     def retranslateUi(self, Consumption):
         Consumption.setWindowTitle(QCoreApplication.translate("Consumption", u"Form", None))
         self.label.setText(QCoreApplication.translate("Consumption", u"<html><head/><body><p><span style=\" font-size:20pt; font-weight:700;\">42%</span></p></body></html>", None))
-        self.kwh_consumption_label.setText(QCoreApplication.translate("Consumption", u"<html><head/><body><p><span style=\" font-size:20pt; font-weight:700;\">6.421 kWh</span></p></body></html>", None))
+        self.kwh_consumption_label.setText(QCoreApplication.translate("Consumption", u"<html><head/><body><p><span style=\" font-size:16pt; font-weight:700;\">6.421 kWh</span></p></body></html>", None))
         self.kwh_max_label.setText(QCoreApplication.translate("Consumption", u"<html><head/><body><p><span style=\"font-size:13px; font-weight:600; color:#b4b4db;\">out of 8.421 kWh</span></p></body></html>", None))
     # retranslateUi
 
