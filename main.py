@@ -257,7 +257,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.animation.start()
 
     def mantunModbus(self):
-        self.mantunModbus=mantun.MantunModbus(port='/dev/ttyS4',timeout=1) 
+        try:
+            self.mantunModbus=mantun.MantunModbus(port='/dev/ttyS4',timeout=1) 
+        except Exception as e:
+            print(f'[failed] connect modbus failed {e}')
+            self.mantunModbus=None 
+            return 
         try:
             states=self.mantunModbus.readSwitchState()
             for state in states:
@@ -279,6 +284,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         elif cardNo== 5:
             self.card_component_6.card_button.setChecked(checked)    
     def mantunSwitch(self,switchNo,checked:bool):
+        if self.mantunModbus is None:
+            return 
         try:
             state=self.mantunModbus.switch(switchNo=switchNo,switch=checked)
             self.setCardButton(state['switchNo'],state['switch'])
@@ -287,6 +294,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             print(f'[error] switch {switchNo} failed {e}')
     
     def mantunRefresh(self):
+        if self.mantunModbus is None:
+            return 
         try:
             states=self.mantunModbus.readSwitchState()
             for state in states:

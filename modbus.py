@@ -2,7 +2,10 @@ import serial
 
 class ModbusSerial:
     def __init__(self,baudrate=19200,timeout=0,port='/dev/ttyS4',bytesize=8,parity=serial.PARITY_NONE):
-        self.ser=serial.Serial(port=port,baudrate=baudrate,bytesize=bytesize,parity=parity,timeout=timeout)
+        try:
+            self.ser=serial.Serial(port=port,baudrate=baudrate,bytesize=bytesize,parity=parity,timeout=timeout)
+        except serial.SerialException as e:
+            raise e
 
     def send(self,data,readLength=8):
         try:
