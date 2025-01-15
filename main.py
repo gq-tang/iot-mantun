@@ -305,7 +305,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         except Exception as e:
             print(e)
 
-def ensure_single_instance(pid_file='./iot-mantun.pid'):
+def ensure_single_instance(pid_file='/tmp/iot-mantun.pid'):
     if os.path.exists(pid_file):
         with open(pid_file,'r') as f:
             pid=int(f.read().strip())
