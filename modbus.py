@@ -26,13 +26,13 @@ class ReadCoilsReq:
 
     def encode(self):
         buf=bytearray()
-        buf.extend(self.addr.to_bytes())
-        buf.extend(self.cmd.to_bytes())
+        buf.extend(self.addr.to_bytes(length=1))
+        buf.extend(self.cmd.to_bytes(length=1))
 
-        buf.extend(self.startRegister.to_bytes(2,byteorder='big'))
-        buf.extend(self.count.to_bytes(2,byteorder='big'))
+        buf.extend(self.startRegister.to_bytes(length=2,byteorder='big'))
+        buf.extend(self.count.to_bytes(length=2,byteorder='big'))
         self.crc=modbus_crc(buf)
-        buf.extend(self.crc.to_bytes(2,byteorder='little'))
+        buf.extend(self.crc.to_bytes(length=2,byteorder='little'))
         return buf 
     
 class ReadCoilsResp:
@@ -68,12 +68,12 @@ class WriteSingleCoil:
     def encode(self):
         # print(f'[debug] addr:{self.addr} cmd:{self.cmd} start:{self.startRegister} data:{self.data}')
         buf=bytearray()
-        buf.extend(self.addr.to_bytes())
-        buf.extend(self.cmd.to_bytes())
-        buf.extend(self.startRegister.to_bytes(2,byteorder='big'))
-        buf.extend(self.data.to_bytes(2,byteorder='big'))
+        buf.extend(self.addr.to_bytes(length=1))
+        buf.extend(self.cmd.to_bytes(length=1))
+        buf.extend(self.startRegister.to_bytes(length=2,byteorder='big'))
+        buf.extend(self.data.to_bytes(length=2,byteorder='big'))
         self.crc=modbus_crc(buf)
-        buf.extend(self.crc.to_bytes(2,byteorder='little'))
+        buf.extend(self.crc.to_bytes(length=2,byteorder='little'))
         return buf
     
     def decode(self,data):
