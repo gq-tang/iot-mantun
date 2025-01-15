@@ -257,7 +257,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.animation.start()
 
     def mantunModbus(self):
-        self.mantunModbus=mantun.MantunModbus(port='COM4',timeout=1) 
+        self.mantunModbus=mantun.MantunModbus(port='/dev/ttyS4',timeout=1) 
         try:
             states=self.mantunModbus.readSwitchState()
             for state in states:
