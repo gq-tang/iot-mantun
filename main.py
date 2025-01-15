@@ -260,21 +260,38 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.mantunModbus=mantun.MantunModbus(port='COM4',timeout=1) 
         try:
             states=self.mantunModbus.readSwitchState()
-            print(states)
+            for state in states:
+                self.setCardButton(state['switchNo'],state['switch'])
         except Exception as e:
-            print(e)
+            print(f'[error] read switch state failed {e}')
 
-    def mantunSwitch(self,switchNo,checked):
+    def setCardButton(self,cardNo,checked:bool):
+        match cardNo:
+            case 0:
+                self.card_component_1.card_button.setChecked(checked)
+            case 1:
+                self.card_component_2.card_button.setChecked(checked)
+            case 2:
+                self.card_component_3.card_button.setChecked(checked)
+            case 3:
+                self.card_component_4.card_button.setChecked(checked)
+            case 4:
+                self.card_component_5.card_button.setChecked(checked)
+            case 5:
+                self.card_component_6.card_button.setChecked(checked)    
+    def mantunSwitch(self,switchNo,checked:bool):
         try:
             state=self.mantunModbus.switch(switchNo=switchNo,switch=checked)
-            print(state)
+            self.setCardButton(state['switchNo'],state['switch'])
         except Exception as e:
-            print(e)
+            self.setCardButton(switchNo,not checked)          
+            print(f'[error] switch {switchNo} failed {e}')
     
     def mantunRefresh(self):
         try:
             states=self.mantunModbus.readSwitchState()
-            print(states)
+            for state in states:
+                self.setCardButton(state['switchNo'],state['switch'])
         except Exception as e:
             print(e)
 

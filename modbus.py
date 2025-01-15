@@ -52,7 +52,7 @@ class ReadCoilsResp:
         idx=3+int(self.byteCount)
         self.data.append(data[3:idx])
         self.crc=int.from_bytes(data[idx:],byteorder='little')
-        print(f'[debug] addr:{self.addr} cmd:{self.cmd} byteCount:{self.byteCount} data:{self.data} crc:{self.crc}')
+        # print(f'[debug] addr:{self.addr} cmd:{self.cmd} byteCount:{self.byteCount} data:{self.data} crc:{self.crc}')
 
 class WriteSingleCoil:
     def __init__(self,addr=0x01,startRegister=0x0000,switch=True):

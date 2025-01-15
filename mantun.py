@@ -23,7 +23,7 @@ class MantunSwitchResp(modbus.ReadCoilsResp):
         for idx,item in enumerate(self.data):
             for i in range(8):
                 switch=False
-                if  int(item) & (1<<i) >0:
+                if  int.from_bytes(item) & (1<<i) >0:
                     switch=True
                 results.append({
                     'switchNo':idx*8+i,
