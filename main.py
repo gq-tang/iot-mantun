@@ -158,7 +158,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.card_component_5 = CardComponent(title="4路")
         self.card_component_6 = CardComponent(title="5路")
 
-        self.card_component_1.card_button.clicked.connect(self.mantunSwitch)
+        self.card_component_1.card_button.clicked.connect(lambda checked:self.mantunSwitch(0,checked))
+        self.card_component_2.card_button.clicked.connect(lambda checked:self.mantunSwitch(1,checked))
+        self.card_component_3.card_button.clicked.connect(lambda checked:self.mantunSwitch(2,checked))
+        self.card_component_4.card_button.clicked.connect(lambda checked:self.mantunSwitch(3,checked))
+        self.card_component_5.card_button.clicked.connect(lambda checked:self.mantunSwitch(4,checked))
+        self.card_component_6.card_button.clicked.connect(lambda checked:self.mantunSwitch(5,checked))
 
         self.form_layout_1=QHBoxLayout()
         self.form_layout_1.addWidget(self.card_component_1)
@@ -251,20 +256,20 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.animation.start()
 
     def mantunModbus(self):
-        self.mantunModbus=mantun.MantunModbus(port='COM4') 
+        self.mantunModbus=mantun.MantunModbus(port='COM4',timeout=1) 
         try:
             states=self.mantunModbus.readSwitchState()
             print(states)
         except Exception as e:
             print(e)
 
-    def mantunSwitch(self,checked):
+    def mantunSwitch(self,switchNo,checked):
         try:
-            state=self.mantunModbus.switch(checked)
+            state=self.mantunModbus.switch(switchNo=switchNo,switch=checked)
             print(state)
         except Exception as e:
             print(e)
-            
+
 app = QApplication([])
 
 window = MainWindow()

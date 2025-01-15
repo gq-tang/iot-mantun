@@ -9,6 +9,7 @@
     <file>resources/icons/switch-on.svg</file>
     <file>resources/icons/switch-off.svg</file>
     <file>resources/icons/exit.svg</file>
+    <file>resources/icons/refresh.svg</file>
   </qresource>
   <qresource prefix="images" />
 </RCC>

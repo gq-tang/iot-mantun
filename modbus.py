@@ -6,7 +6,8 @@ class ModbusSerial:
 
     def send(self,data,readLength=8):
         try:
-            self.ser.write(data)
+            n=self.ser.write(data)
+            print(f"[debug] write {n} bytes:{data}")
             data=self.ser.read(readLength)
             return data 
         except serial.SerialException as e:
@@ -63,6 +64,7 @@ class WriteSingleCoil:
         self.crc=0
     
     def encode(self):
+        # print(f'[debug] addr:{self.addr} cmd:{self.cmd} start:{self.startRegister} data:{self.data}')
         buf=bytearray()
         buf.extend(self.addr.to_bytes())
         buf.extend(self.cmd.to_bytes())
@@ -74,7 +76,7 @@ class WriteSingleCoil:
     
     def decode(self,data):
         if len(data)<8:
-            raise ValueError('data too short')
+            raise ValueError(f'data:{data} too short')
         self.addr=data[0]
         self.cmd=data[1]
         self.startRegister=int.from_bytes(data[2:4],byteorder='big')
