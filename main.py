@@ -8,6 +8,8 @@ from gui.ui_card_component import Ui_CardComponent
 from gui.ui_circular_controler import Ui_CircularControler
 from gui.ui_consumption import Ui_Consumption
 
+import mantun
+
 class Consumption(QWidget, Ui_Consumption):
     def __init__(self) -> None:
         super().__init__()
@@ -156,7 +158,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.card_component_5 = CardComponent(title="4路")
         self.card_component_6 = CardComponent(title="5路")
 
-        self.card_component_1.card_button.clicked.connect(mainGate)
+        self.card_component_1.card_button.clicked.connect(self.mantunSwitch)
 
         self.form_layout_1=QHBoxLayout()
         self.form_layout_1.addWidget(self.card_component_1)
@@ -221,6 +223,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.consumption_widget = Consumption()
         self.main_frame_consumption.setLayout(self.consumption_layout)
         self.main_frame_consumption.layout().addWidget(self.consumption_widget)
+
+        self.mantunModbus()
         
     def temperature_page(self):
             self.stackedWidget.setCurrentIndex(0)
@@ -245,15 +249,22 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.animation.setEndValue(new_width)
         self.animation.setEasingCurve(QEasingCurve.OutCubic)
         self.animation.start()
-        
-        
-def mainGate(clicked):
-    if clicked:
-        print('main gate checked')
-    else:
-        print('main gate no checked')
-        
-        
+
+    def mantunModbus(self):
+        self.mantunModbus=mantun.MantunModbus(port='COM4') 
+        try:
+            states=self.mantunModbus.readSwitchState()
+            print(states)
+        except Exception as e:
+            print(e)
+
+    def mantunSwitch(self,checked):
+        try:
+            state=self.mantunModbus.switch(checked)
+            print(state)
+        except Exception as e:
+            print(e)
+            
 app = QApplication([])
 
 window = MainWindow()

@@ -1,8 +1,8 @@
 import serial
 
 class ModbusSerial:
-    def __init__(self,baudrate=19200,timeout=0,port='/dev/ttyS4'):
-        self.ser=serial.Serial(port,baudrate,timeout)
+    def __init__(self,baudrate=19200,timeout=0,port='/dev/ttyS4',bytesize=8,parity=serial.PARITY_NONE):
+        self.ser=serial.Serial(port=port,baudrate=baudrate,bytesize=bytesize,parity=parity,timeout=timeout)
 
     def send(self,data,readLength=8):
         try:
@@ -44,7 +44,7 @@ class ReadCoilsResp:
     
     def decode(self,data):
         if len(data)<7:
-            raise ValueError('data too short')
+            raise ValueError(f'data:{data} too short')
         self.addr=data[0]
         self.cmd=data[1]
         self.byteCount=data[2]

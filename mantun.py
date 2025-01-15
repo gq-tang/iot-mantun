@@ -32,8 +32,8 @@ class MantunSwitchResp(modbus.ReadCoilsResp):
 
 
 class MantunModbus(modbus.ModbusSerial):
-    def __init__(self,baudrate=19200,timeout=0,port='/dev/ttyS4'):
-        super().__init__(baudrate=baudrate,timeout=timeout,port=port)
+    def __init__(self,baudrate=19200,timeout=0,port='/dev/ttyS4',bytesize=8):
+        super().__init__(baudrate=baudrate,timeout=timeout,port=port,bytesize=bytesize)
     
     def switch(self,addr=0x01,startRegister=0x0000,switch=True):
         f=MantunSwitch(addr=addr,startRegister=startRegister,switch=switch)
@@ -48,5 +48,8 @@ class MantunModbus(modbus.ModbusSerial):
         f=modbus.ReadCoilsReq(addr=addr,startRegister=startRegister,count=count)    
         try:
             resp=self.send(f.encode())
-            respF=modbus.ReadCoilsResp()
+            respF=MantunSwitchResp()
             respF.decode(resp)
+            return respF.states()
+        except Exception as e:
+            raise e 
