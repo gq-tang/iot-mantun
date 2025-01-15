@@ -266,19 +266,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             print(f'[error] read switch state failed {e}')
 
     def setCardButton(self,cardNo,checked:bool):
-        match cardNo:
-            case 0:
-                self.card_component_1.card_button.setChecked(checked)
-            case 1:
-                self.card_component_2.card_button.setChecked(checked)
-            case 2:
-                self.card_component_3.card_button.setChecked(checked)
-            case 3:
-                self.card_component_4.card_button.setChecked(checked)
-            case 4:
-                self.card_component_5.card_button.setChecked(checked)
-            case 5:
-                self.card_component_6.card_button.setChecked(checked)    
+        if cardNo==0:
+            self.card_component_1.card_button.setChecked(checked)
+        elif cardNo== 1:
+            self.card_component_2.card_button.setChecked(checked)
+        elif cardNo== 2:
+            self.card_component_3.card_button.setChecked(checked)
+        elif cardNo== 3:
+            self.card_component_4.card_button.setChecked(checked)
+        elif cardNo==4:
+            self.card_component_5.card_button.setChecked(checked)
+        elif cardNo== 5:
+            self.card_component_6.card_button.setChecked(checked)    
     def mantunSwitch(self,switchNo,checked:bool):
         try:
             state=self.mantunModbus.switch(switchNo=switchNo,switch=checked)
