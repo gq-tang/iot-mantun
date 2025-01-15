@@ -9,6 +9,8 @@ from gui.ui_circular_controler import Ui_CircularControler
 from gui.ui_consumption import Ui_Consumption
 
 import mantun
+import os 
+import sys 
 
 class Consumption(QWidget, Ui_Consumption):
     def __init__(self) -> None:
@@ -302,6 +304,22 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.setCardButton(state['switchNo'],state['switch'])
         except Exception as e:
             print(e)
+
+def ensure_single_instance(pid_file='./iot-mantun.pid'):
+    if os.path.exists(pid_file):
+        with open(pid_file,'r') as f:
+            pid=int(f.read().strip())
+        try:
+            os.kill(pid,0)
+            print('Another instance is already running')
+            sys.exit(1)
+        except OSError:
+            pass 
+    
+    with open(pid_file,'w') as f:
+        f.write(str(os.getpid()))
+
+ensure_single_instance()
 
 app = QApplication([])
 
