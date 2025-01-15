@@ -12,22 +12,23 @@ class MantunSwitch(modbus.WriteSingleCoil):
         }    
 
 class MantunSwitchResp(modbus.ReadCoilsResp):
-    def __init__(self, addr=1, byteCount=2, data=0):
-        super().__init__(addr, byteCount, data)
+    def __init__(self):
+        super().__init__()
     
     def decode(self,data):
         super().decode(data)
 
     def states(self):
         results=[]
-        for i in range(16):
-            switch=False
-            if self.data&(1<<i)>0:
-                switch=True 
-            results.append({
-                'switchNo':i,
-                'switch':switch
-            })    
+        for idx,item in enumerate(self.data):
+            for i in range(8):
+                switch=False
+                if  int(item) & (1<<i) >0:
+                    switch=True
+                results.append({
+                    'switchNo':idx*8+i,
+                    'switch':switch
+                })       
         return results     
 
 

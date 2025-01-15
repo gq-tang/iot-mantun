@@ -36,21 +36,23 @@ class ReadCoilsReq:
         return buf 
     
 class ReadCoilsResp:
-    def __init__(self,addr=0x01,byteCount=0x02,data=0x1300):
-        self.addr=addr 
+    def __init__(self):
+        self.addr=0 
         self.cmd=0x01
-        self.byteCount=byteCount
-        self.data=data 
+        self.byteCount=1
+        self.data=[] 
         self.crc=0
     
     def decode(self,data):
-        if len(data)<7:
+        if len(data)<6:
             raise ValueError(f'data:{data} too short')
         self.addr=data[0]
         self.cmd=data[1]
         self.byteCount=data[2]
-        self.data=int.from_bytes(data[3:5],byteorder='big')
-        self.crc=int.from_bytes(data[5:7],byteorder='little')
+        idx=3+int(self.byteCount)
+        self.data.append(data[3:idx])
+        self.crc=int.from_bytes(data[idx:],byteorder='little')
+        print(f'[debug] addr:{self.addr} cmd:{self.cmd} byteCount:{self.byteCount} data:{self.data} crc:{self.crc}')
 
 class WriteSingleCoil:
     def __init__(self,addr=0x01,startRegister=0x0000,switch=True):

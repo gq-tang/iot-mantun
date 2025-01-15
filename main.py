@@ -164,6 +164,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.card_component_4.card_button.clicked.connect(lambda checked:self.mantunSwitch(3,checked))
         self.card_component_5.card_button.clicked.connect(lambda checked:self.mantunSwitch(4,checked))
         self.card_component_6.card_button.clicked.connect(lambda checked:self.mantunSwitch(5,checked))
+        self.search_button.clicked.connect(self.mantunRefresh)
 
         self.form_layout_1=QHBoxLayout()
         self.form_layout_1.addWidget(self.card_component_1)
@@ -267,6 +268,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         try:
             state=self.mantunModbus.switch(switchNo=switchNo,switch=checked)
             print(state)
+        except Exception as e:
+            print(e)
+    
+    def mantunRefresh(self):
+        try:
+            states=self.mantunModbus.readSwitchState()
+            print(states)
         except Exception as e:
             print(e)
 
