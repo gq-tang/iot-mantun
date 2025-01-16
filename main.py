@@ -265,7 +265,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         try:
             self.mantunWriteLock=False
             self.mantunReadLock=False
-            self.mantunModbus=mantun.MantunModbus(port='COM4',timeout=1) 
+            self.mantunModbus=mantun.MantunModbus(port='/dev/ttyS4',timeout=1) 
         except Exception as e:
             print(f'[failed] connect modbus failed {e}')
             self.mantunModbus=None 
@@ -315,7 +315,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         finally:
             self.mantunReadLock=False
 
-def ensure_single_instance(pid_file='./iot-mantun.pid'):
+def ensure_single_instance(pid_file='/tmp/iot-mantun.pid'):
     if os.path.exists(pid_file):
         with open(pid_file,'r') as f:
             pid=int(f.read().strip())
