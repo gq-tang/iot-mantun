@@ -234,8 +234,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.mantunModbus()
         self.timer=QTimer()
-        self.timer.setInterval(1000)
         self.timer.timeout.connect(self.mantunRefresh)
+        self.timer.start(2500)
         
     def temperature_page(self):
             self.stackedWidget.setCurrentIndex(0)
@@ -270,12 +270,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             print(f'[failed] connect modbus failed {e}')
             self.mantunModbus=None 
             return 
-        try:
-            states=self.mantunModbus.readSwitchState()
-            for state in states:
-                self.setCardButton(state['switchNo'],state['switch'])
-        except Exception as e:
-            print(f'[error] read switch state failed {e}')
+        self.mantunRefresh()
 
     def setCardButton(self,cardNo,checked:bool):
         if cardNo==0:
@@ -318,7 +313,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         except Exception as e:
             print(e)
         finally:
-            self.uantunReadLock=False
+            self.mantunReadLock=False
 
 def ensure_single_instance(pid_file='/tmp/iot-mantun.pid'):
     if os.path.exists(pid_file):
