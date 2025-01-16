@@ -70,8 +70,8 @@ QPushButton#card_button::hover{
        <widget class="QPushButton" name="card_button">
         <property name="maximumSize">
          <size>
-          <width>64</width>
-          <height>64</height>
+          <width>128</width>
+          <height>70</height>
          </size>
         </property>
         <property name="text">
@@ -84,7 +84,7 @@ QPushButton#card_button::hover{
         </property>
         <property name="iconSize">
          <size>
-          <width>64</width>
+          <width>128</width>
           <height>64</height>
          </size>
         </property>
