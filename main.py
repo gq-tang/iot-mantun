@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QApplication, QMainWindow, QGraphicsDropShadowEffect, QHBoxLayout, QVBoxLayout, QLabel, QPushButton, QWidget, QFrame, QSpacerItem, QSizePolicy
 from PySide6.QtGui import QColor, QPixmap, QIcon
-from PySide6.QtCore import Qt, QPropertyAnimation, QEasingCurve, QSize,Signal
+from PySide6.QtCore import Qt, QPropertyAnimation, QEasingCurve, QSize,QTimer
 from PySide6.QtSvgWidgets import QSvgWidget
 
 from gui.ui_main import Ui_MainWindow
@@ -233,6 +233,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.main_frame_consumption.layout().addWidget(self.consumption_widget)
 
         self.mantunModbus()
+        self.timer=QTimer()
+        self.timer.setInterval(1000)
+        self.timer.timeout.connect(self.mantunRefresh)
         
     def temperature_page(self):
             self.stackedWidget.setCurrentIndex(0)
@@ -260,6 +263,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def mantunModbus(self):
         try:
+            self.mantunWriteLock=False
+            self.mantunReadLock=False
             self.mantunModbus=mantun.MantunModbus(port='/dev/ttyS4',timeout=1) 
         except Exception as e:
             print(f'[failed] connect modbus failed {e}')
@@ -289,21 +294,31 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if self.mantunModbus is None:
             return 
         try:
+            self.mantunWriteLock=True 
             state=self.mantunModbus.switch(switchNo=switchNo,switch=checked)
             self.setCardButton(state['switchNo'],state['switch'])
         except Exception as e:
             self.setCardButton(switchNo,not checked)          
             print(f'[error] switch {switchNo} failed {e}')
+        finally:
+            self.mantunWriteLock=False 
     
     def mantunRefresh(self):
         if self.mantunModbus is None:
             return 
+        if self.mantunWriteLock:
+            return 
+        if self.mantunReadLock:
+            return 
         try:
+            self.mantunReadLock=True 
             states=self.mantunModbus.readSwitchState()
             for state in states:
                 self.setCardButton(state['switchNo'],state['switch'])
         except Exception as e:
             print(e)
+        finally:
+            self.uantunReadLock=False
 
 def ensure_single_instance(pid_file='/tmp/iot-mantun.pid'):
     if os.path.exists(pid_file):
