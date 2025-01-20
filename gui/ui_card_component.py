@@ -63,6 +63,7 @@ class Ui_CardComponent(object):
         self.card_button = QPushButton(self.frame)
         self.card_button.setObjectName(u"card_button")
         self.card_button.setMaximumSize(QSize(128, 70))
+        self.card_button.setCursor(QCursor(Qt.CursorShape.PointingHandCursor))
         icon = QIcon()
         icon.addFile(u":/icons/resources/icons/switch-off.svg", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
         icon.addFile(u":/icons/resources/icons/switch-on.svg", QSize(), QIcon.Mode.Normal, QIcon.State.On)

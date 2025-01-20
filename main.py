@@ -11,6 +11,7 @@ from gui.ui_consumption import Ui_Consumption
 import mantun
 import os 
 import sys 
+import argparse 
 
 class Consumption(QWidget, Ui_Consumption):
     def __init__(self) -> None:
@@ -132,7 +133,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def exitMousePressEvent(self,event):
         self.close()
     
-    def __init__(self):
+    def __init__(self,port='/dev/ttyS4'):
         super().__init__()
         self.setupUi(self)
         self.setWindowFlag(Qt.FramelessWindowHint)
@@ -232,7 +233,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.main_frame_consumption.setLayout(self.consumption_layout)
         self.main_frame_consumption.layout().addWidget(self.consumption_widget)
 
-        self.mantunModbus()
+        self.mantunModbus(port=port)
         self.timer=QTimer()
         self.timer.timeout.connect(self.mantunRefresh)
         self.timer.start(2500)
@@ -261,11 +262,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.animation.setEasingCurve(QEasingCurve.OutCubic)
         self.animation.start()
 
-    def mantunModbus(self):
+    def mantunModbus(self,port):
         try:
             self.mantunWriteLock=False
             self.mantunReadLock=False
-            self.mantunModbus=mantun.MantunModbus(port='/dev/ttyS4',timeout=1) 
+            self.mantunModbus=mantun.MantunModbus(port=port,timeout=1) 
         except Exception as e:
             print(f'[failed] connect modbus failed {e}')
             self.mantunModbus=None 
@@ -329,11 +330,18 @@ def ensure_single_instance(pid_file='/tmp/iot-mantun.pid'):
     with open(pid_file,'w') as f:
         f.write(str(os.getpid()))
 
-ensure_single_instance()
+parser=argparse.ArgumentParser(description='Mantun IOT')
+parser.add_argument('--port',default='/dev/ttyS4')
+parser.add_argument('--pid_file',default='/tmp/iot-mantun.pid')
+
+args=parser.parse_args()
+print(f'[debug] pid_file:{args.pid_file} port:{args.port}') 
+ 
+ensure_single_instance(pid_file=args.pid_file)
 
 app = QApplication([])
 
-window = MainWindow()
+window = MainWindow(args.port)
 window.show()
 
 app.exec()
