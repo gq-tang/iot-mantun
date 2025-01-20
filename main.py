@@ -341,7 +341,7 @@ ensure_single_instance(pid_file=args.pid_file)
 
 app = QApplication([])
 
-window = MainWindow(args.port)
+window = MainWindow(port=args.port)
 window.show()
 
 app.exec()
