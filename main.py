@@ -160,7 +160,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         super().__init__()
         self.setupUi(self)
         self.setWindowFlag(Qt.FramelessWindowHint)
-        self.setWindowFlag(Qt.Window | Qt.CustomizeWindowHint)
+        # self.setWindowFlag(Qt.Window | Qt.CustomizeWindowHint)
 
         self.frame_7.mousePressEvent=self.exitMousePressEvent
         
