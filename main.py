@@ -13,6 +13,29 @@ import os
 import sys 
 import argparse 
 
+def ensure_single_instance(pid_file='/tmp/iot-mantun.pid'):
+    if os.path.exists(pid_file):
+        with open(pid_file,'r') as f:
+            pid=int(f.read().strip())
+        try:
+            os.kill(pid,0)
+            print('Another instance is already running')
+            sys.exit(1)
+        except OSError:
+            pass 
+    
+    with open(pid_file,'w') as f:
+        f.write(str(os.getpid()))
+
+parser=argparse.ArgumentParser(description='Mantun IOT')
+parser.add_argument('--port',default='/dev/ttyS4')
+parser.add_argument('--pid_file',default='/tmp/iot-mantun.pid')
+
+args=parser.parse_args()
+print(f'[debug] pid_file:{args.pid_file} port:{args.port}') 
+ 
+ensure_single_instance(pid_file=args.pid_file)
+
 class Consumption(QWidget, Ui_Consumption):
     def __init__(self) -> None:
         super().__init__()
@@ -137,6 +160,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         super().__init__()
         self.setupUi(self)
         self.setWindowFlag(Qt.FramelessWindowHint)
+        self.setWindowFlag(Qt.Window | Qt.CustomizeWindowHint)
 
         self.frame_7.mousePressEvent=self.exitMousePressEvent
         
@@ -315,29 +339,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             print(e)
         finally:
             self.mantunReadLock=False
-
-def ensure_single_instance(pid_file='/tmp/iot-mantun.pid'):
-    if os.path.exists(pid_file):
-        with open(pid_file,'r') as f:
-            pid=int(f.read().strip())
-        try:
-            os.kill(pid,0)
-            print('Another instance is already running')
-            sys.exit(1)
-        except OSError:
-            pass 
-    
-    with open(pid_file,'w') as f:
-        f.write(str(os.getpid()))
-
-parser=argparse.ArgumentParser(description='Mantun IOT')
-parser.add_argument('--port',default='/dev/ttyS4')
-parser.add_argument('--pid_file',default='/tmp/iot-mantun.pid')
-
-args=parser.parse_args()
-print(f'[debug] pid_file:{args.pid_file} port:{args.port}') 
- 
-ensure_single_instance(pid_file=args.pid_file)
 
 app = QApplication([])
 
