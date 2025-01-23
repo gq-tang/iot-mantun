@@ -261,7 +261,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.mantunModbus(port=port)
         self.timer=QTimer()
         self.timer.timeout.connect(self.mantunRefreshTask)
-        self.timer.start(2500)
+        self.timer.start(3000)
         
     def temperature_page(self):
             self.stackedWidget.setCurrentIndex(0)
@@ -315,6 +315,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             return 
         try:
             self.mantunLock.acquire()
+            self.timer.stop()
             # print(f'[info] switch {switchNo} {checked}')
             state=self.mantunModbus.switch(switchNo=switchNo,switch=checked)
             self.setCardButton(state['switchNo'],state['switch'])
@@ -323,6 +324,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             print(f'[error] switch {switchNo} failed {e}')
         finally:
             self.mantunLock.release()
+            self.timer.start(3000)
     
     def mantunRefresh(self):
         if self.mantunModbus is None:
