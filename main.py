@@ -12,8 +12,7 @@ from gui.ui_consumption import Ui_Consumption
 import mantun
 import os 
 import sys 
-import argparse 
-from thread import ReadWriteLock
+import argparse
 
 def ensure_single_instance(pid_file='/tmp/iot-mantun.pid'):
     if os.path.exists(pid_file):
@@ -290,7 +289,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def mantunModbus(self,port):
         try:
-            self.mantunLock=ReadWriteLock()
+            self.mantunLock=threading.Lock()
             self.mantunModbus=mantun.MantunModbus(port=port,timeout=2) 
         except Exception as e:
             print(f'[failed] connect modbus failed {e}')
@@ -315,7 +314,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if self.mantunModbus is None:
             return 
         try:
-            self.mantunLock.acquire_write()
+            self.mantunLock.acquire()
             # print(f'[info] switch {switchNo} {checked}')
             state=self.mantunModbus.switch(switchNo=switchNo,switch=checked)
             self.setCardButton(state['switchNo'],state['switch'])
@@ -323,20 +322,22 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.setCardButton(switchNo,not checked)          
             print(f'[error] switch {switchNo} failed {e}')
         finally:
-            self.mantunLock.release_write()
+            self.mantunLock.release()
     
     def mantunRefresh(self):
         if self.mantunModbus is None:
             return 
+        if self.mantunLock.locked():
+            return 
         try:
-            self.mantunLock.acquire_read()
+            self.mantunLock.acquire()
             states=self.mantunModbus.readSwitchState()
             for state in states:
                 self.setCardButton(state['switchNo'],state['switch'])
         except Exception as e:
             print(f'[error] readSwitchState failed {e}')
         finally:
-            self.mantunLock.release_read()
+            self.mantunLock.release()
     
     def mantunRefreshTask(self):
         threading.Thread(target=self.mantunRefresh).start()
