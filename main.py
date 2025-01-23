@@ -291,7 +291,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def mantunModbus(self,port):
         try:
             self.mantunLock=ReadWriteLock()
-            self.mantunModbus=mantun.MantunModbus(port=port,timeout=1) 
+            self.mantunModbus=mantun.MantunModbus(port=port,timeout=2) 
         except Exception as e:
             print(f'[failed] connect modbus failed {e}')
             self.mantunModbus=None 
@@ -316,7 +316,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             return 
         try:
             self.mantunLock.acquire_write()
-            print(f'[info] switch {switchNo} {checked}')
+            # print(f'[info] switch {switchNo} {checked}')
             state=self.mantunModbus.switch(switchNo=switchNo,switch=checked)
             self.setCardButton(state['switchNo'],state['switch'])
         except Exception as e:
@@ -334,7 +334,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             for state in states:
                 self.setCardButton(state['switchNo'],state['switch'])
         except Exception as e:
-            print(e)
+            print(f'[error] readSwitchState failed {e}')
         finally:
             self.mantunLock.release_read()
     
