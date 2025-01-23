@@ -1,3 +1,4 @@
+import threading
 from PySide6.QtWidgets import QApplication, QMainWindow, QGraphicsDropShadowEffect, QHBoxLayout, QVBoxLayout, QLabel, QPushButton, QWidget, QFrame, QSpacerItem, QSizePolicy
 from PySide6.QtGui import QColor, QPixmap, QIcon
 from PySide6.QtCore import Qt, QPropertyAnimation, QEasingCurve, QSize,QTimer
@@ -12,6 +13,7 @@ import mantun
 import os 
 import sys 
 import argparse 
+from thread import ReadWriteLock
 
 def ensure_single_instance(pid_file='/tmp/iot-mantun.pid'):
     if os.path.exists(pid_file):
@@ -259,7 +261,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.mantunModbus(port=port)
         self.timer=QTimer()
-        self.timer.timeout.connect(self.mantunRefresh)
+        self.timer.timeout.connect(self.mantunRefreshTask)
         self.timer.start(2500)
         
     def temperature_page(self):
@@ -288,8 +290,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def mantunModbus(self,port):
         try:
-            self.mantunWriteLock=False
-            self.mantunReadLock=False
+            self.mantunLock=ReadWriteLock()
             self.mantunModbus=mantun.MantunModbus(port=port,timeout=1) 
         except Exception as e:
             print(f'[failed] connect modbus failed {e}')
@@ -314,31 +315,31 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if self.mantunModbus is None:
             return 
         try:
-            self.mantunWriteLock=True 
+            self.mantunLock.acquire_write()
+            print(f'[info] switch {switchNo} {checked}')
             state=self.mantunModbus.switch(switchNo=switchNo,switch=checked)
             self.setCardButton(state['switchNo'],state['switch'])
         except Exception as e:
             self.setCardButton(switchNo,not checked)          
             print(f'[error] switch {switchNo} failed {e}')
         finally:
-            self.mantunWriteLock=False 
+            self.mantunLock.release_write()
     
     def mantunRefresh(self):
         if self.mantunModbus is None:
             return 
-        if self.mantunWriteLock:
-            return 
-        if self.mantunReadLock:
-            return 
         try:
-            self.mantunReadLock=True 
+            self.mantunLock.acquire_read()
             states=self.mantunModbus.readSwitchState()
             for state in states:
                 self.setCardButton(state['switchNo'],state['switch'])
         except Exception as e:
             print(e)
         finally:
-            self.mantunReadLock=False
+            self.mantunLock.release_read()
+    
+    def mantunRefreshTask(self):
+        threading.Thread(target=self.mantunRefresh).start()
 
 app = QApplication([])
 
