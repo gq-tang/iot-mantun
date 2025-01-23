@@ -10,8 +10,9 @@ class ModbusSerial:
     def send(self,data,readLength=8):
         try:
             n=self.ser.write(data)
-            # print(f"[debug] write {n} bytes:{data}")
+            print(f"[debug] write {n} bytes:{data}")
             data=self.ser.read(readLength)
+            print(f'[debug] response {data}')
             return data 
         except serial.SerialException as e:
             raise e 
